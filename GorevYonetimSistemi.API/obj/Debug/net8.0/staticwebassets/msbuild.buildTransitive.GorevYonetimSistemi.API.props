@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/GorevYonetimSistemi.API.props" />
+</Project>

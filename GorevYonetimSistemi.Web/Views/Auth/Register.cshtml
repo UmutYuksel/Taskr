@@ -1,0 +1,58 @@
+@model GorevYonetimSistemi.Business.Dtos.User.Auth.UserRegisterDto
+
+<section class="flex flex-col items-center pt-40">
+  <div
+    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-darkContent-800 dark:border-darkContent-700">
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1 class="text-xl font-bold leading-tight tracking-tight text-darkContent-900 md:text-2xl dark:text-darkText">
+        Create an
+        account
+      </h1>
+      <form asp-action="Register" class="space-y-4 md:space-y-6" method="post">
+        <ul asp-validation-summary="All" class="text-sm text-red-500"></ul>
+        <!-- Email Input -->
+        <div>
+          <label asp-for="@Model.Email"
+            class="block mb-2 text-sm font-medium text-darkContent-900 dark:text-darkText">Email</label>
+          <input asp-for="@Model.Email" type="email" name="Email" id="Email"
+            class="bg-darkContent-50 border border-darkContent-300 text-darkContent-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+            placeholder="Email">
+
+          <!-- Validation Message for Email -->
+          <span asp-validation-for="@Model.Email" class="text-sm text-red-500"></span>
+        </div>
+
+        <!-- Password Input -->
+        <div>
+          <label asp-for="@Model.Password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText">Password</label>
+          <input asp-for="@Model.Password" type="password" name="Password" id="Password"
+            class="bg-darkContent-50 border border-darkContent-300 text-darkContent-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+            placeholder="Password">
+          <!-- Validation Message for Password -->
+          <span asp-validation-for="@Model.Password" class="text-sm text-red-500"></span>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div>
+          <label asp-for="@Model.ConfirmPassword"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText">Confirm Password</label>
+          <input asp-for="@Model.ConfirmPassword" type="password" name="ConfirmPassword" id="ConfirmPassword"
+            class="bg-darkContent-50 border border-darkContent-300 text-darkContent-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+            placeholder="Confirm Password">
+          <!-- Validation Message for Confirm Password -->
+          <span asp-validation-for="@Model.ConfirmPassword" class="text-sm text-red-500"></span>
+        </div>
+
+        <button type="submit"
+          class="w-full text-white bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkAccent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">Create
+          an account</button>
+
+        <p class="text-sm font-light text-darkContent-500 dark:text-darkContent-400">Already have an account? <a
+            class="font-medium text-darkAccent-600 hover:underline dark:text-darkAccent-500"
+            href="@Url.Action("Login")">Sign in here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

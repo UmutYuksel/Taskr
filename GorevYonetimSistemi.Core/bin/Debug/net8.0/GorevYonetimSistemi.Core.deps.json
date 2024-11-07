@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "GorevYonetimSistemi.Core/1.0.0": {
+        "runtime": {
+          "GorevYonetimSistemi.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GorevYonetimSistemi.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@using System.Security.Claims
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/tailwind.css" asp-append-version="true" />
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+    <!-- Sayfa yüklenmeden önce tema kontrolü -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.classList.add(savedTheme);
+        })();
+    </script>
+</head>
+
+<body class="font-open bg-darkContent-0 dark:bg-darkContent-1000">
+    <!--Dark-Light-->
+    <div class="absolute top-5 left-5 cursor-pointer text-xl">
+        <i class="fa-solid fa-sun text-white" id="lightMode"></i> <!-- Gözükmeli -->
+        <i class="fa-solid fa-moon text-black hidden" id="darkMode"></i> <!-- Gizli olmalı -->
+    </div>
+    <!--HEADER SECTION-->
+    <header
+        class="block bg-white dark:bg-black border-b dark:border-darkAccent-500 border-darkAccent-700 py-6 lg:py-12 dark:text-darkContent-100 text-lightText uppercase">
+        <!--HEADER CONTAINER-->
+        <div class="container flex items-center justify-between space-x-8 lg:space-x-16">
+            <!--Logo-->
+            <a href="@Url.Action("Index","User")"
+                class="basis-1/4 pl-4 md:pl-0 text-4xl lg:text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-darkAccent-500 to-darkContent-100">Taskr
+            </a>
+            <!--Mobile Menu-->
+            <div class="block md:hidden pr-4">
+                <div class="block space-y-1 cursor-pointer">
+                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
+                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
+                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
+                </div>
+            </div>
+            <!--Navigation-->
+            <nav class="basis-2/4 hidden md:flex justify-between flex-1">
+                <!--Nav Menu-->
+                <div class="flex item-center lg:text-lg space-x-4 lg:space-x-8">
+                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
+                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
+                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
+                    <a href="@Url.Action("Index", "Admin")"
+                        class="hover:text-darkAccent-500 transition duration-500">admin</a>
+                </div>
+                <div class="basis-1/4 space-x-4 lg:space-x-8 ">
+                    <!--Login Area-->
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        <a asp-controller="User" asp-action="Details" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile</a>
+                        <a asp-controller="Account" asp-action="Logout">Logout</a>                
+                    }
+                    else
+                    {
+                        <a  href="@Url.Action("Login","Auth")" class="hover:text-darkAccent-500 transition duration-500">Login</a>
+                        <a href="@Url.Action("Register","Auth")"
+                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Sign Up</a>
+                    }
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script>
+        // Tema kontrolü ve uygulama
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.classList.add(savedTheme);
+        })();
+    </script>
+    <script src="~/js/script.js"></script>
+</body>
+
+</html>

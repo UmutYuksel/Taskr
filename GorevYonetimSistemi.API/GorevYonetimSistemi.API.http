@@ -1,0 +1,6 @@
+@GorevYonetimSistemi.API_HostAddress = http://localhost:5113
+
+GET {{GorevYonetimSistemi.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

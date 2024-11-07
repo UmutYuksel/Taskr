@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "rLYDkGw5zRrDm+FGFUtH1nzN1bj4zXyMs7xMf1glJpE=",
+  "Source": "GorevYonetimSistemi.Web",
+  "BasePath": "_content/GorevYonetimSistemi.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GorevYonetimSistemi.Web/wwwroot",
+      "Source": "GorevYonetimSistemi.Web",
+      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "BasePath": "_content/GorevYonetimSistemi.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/css/tailwind.css",
+      "SourceId": "GorevYonetimSistemi.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "BasePath": "_content/GorevYonetimSistemi.Web",
+      "RelativePath": "css/tailwind.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/tailwind.css"
+    },
+    {
+      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/script.js",
+      "SourceId": "GorevYonetimSistemi.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "BasePath": "_content/GorevYonetimSistemi.Web",
+      "RelativePath": "js/script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/script.js"
+    }
+  ]
+}

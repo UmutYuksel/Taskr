@@ -1,0 +1,17 @@
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Business.deps.json
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Business.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Business.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Core.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Data.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Data.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/bin/Debug/net8.0/GorevYonetimSistemi.Core.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.csproj.AssemblyReference.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.GeneratedMSBuildEditorConfig.editorconfig
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.AssemblyInfoInputs.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.AssemblyInfo.cs
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.csproj.CoreCompileInputs.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYon.5401A4FB.Up2Date
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/refint/GorevYonetimSistemi.Business.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/GorevYonetimSistemi.Business.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/obj/Debug/net8.0/ref/GorevYonetimSistemi.Business.dll

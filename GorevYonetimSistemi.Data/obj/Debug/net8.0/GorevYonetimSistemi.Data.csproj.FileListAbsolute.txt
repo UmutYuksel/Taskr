@@ -1,0 +1,17 @@
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Data.deps.json
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Data.runtimeconfig.json
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Data.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Data.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Core.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/bin/Debug/net8.0/GorevYonetimSistemi.Core.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.csproj.AssemblyReference.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.AssemblyInfoInputs.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.AssemblyInfo.cs
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.csproj.CoreCompileInputs.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYon.FDDE6A9E.Up2Date
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/refint/GorevYonetimSistemi.Data.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.pdb
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/GorevYonetimSistemi.Data.genruntimeconfig.cache
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/Debug/net8.0/ref/GorevYonetimSistemi.Data.dll
