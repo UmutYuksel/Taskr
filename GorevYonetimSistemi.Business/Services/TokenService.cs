@@ -15,20 +15,25 @@ namespace GorevYonetimSistemi.Business.Services
 
         public TokenService(IConfiguration configuration)
         {
-            _secretKey = configuration["Jwt:SecretKey"];
+            _secretKey = configuration["Jwt:SecretKey"]!;
             _tokenExpiration = double.TryParse(configuration["Jwt:TokenExpirationHours"], out var expiration) ? expiration : 1;
-
         }
 
         public string GenerateJWToken(User user)
         {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Email, user.Email!),
+                new Claim(ClaimTypes.Name, user.Username!),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
+
+            Console.WriteLine("[DEBUG] Generated Claims:");
+            foreach (var claim in claims)
+            {
+                Console.WriteLine($"[DEBUG] {claim.Type}: {claim.Value}");
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -42,7 +47,38 @@ namespace GorevYonetimSistemi.Business.Services
                 signingCredentials: creds
             );
 
+            Console.WriteLine($"[DEBUG] Generated JWT Token: {new JwtSecurityTokenHandler().WriteToken(token)}");
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public ClaimsPrincipal ValidateToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_secretKey);
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                }, out var validatedToken);
+
+                Console.WriteLine("[DEBUG] Validated Claims:");
+                foreach (var claim in principal.Claims)
+                {
+                    Console.WriteLine($"[DEBUG] {claim.Type}: {claim.Value}");
+                }
+
+                return principal;
+            }
+            catch (SecurityTokenException ex)
+            {
+                Console.WriteLine($"[ERROR] Token validation failed: {ex.Message}");
+                return null!;
+            }
         }
     }
 }

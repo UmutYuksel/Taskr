@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rLYDkGw5zRrDm+FGFUtH1nzN1bj4zXyMs7xMf1glJpE=",
+  "Hash": "fxbwJ6hGVYOJ9WSkS7aE/YgqYtUZ2/i14tu3OP0/Rug=",
   "Source": "GorevYonetimSistemi.Web",
   "BasePath": "_content/GorevYonetimSistemi.Web",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/tailwind.css"
+    },
+    {
+      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
+      "SourceId": "GorevYonetimSistemi.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "BasePath": "_content/GorevYonetimSistemi.Web",
+      "RelativePath": "js/JwtToken.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/JwtToken.js"
     },
     {
       "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/script.js",

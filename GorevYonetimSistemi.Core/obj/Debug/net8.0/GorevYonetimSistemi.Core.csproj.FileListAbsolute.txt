@@ -9,3 +9,4 @@
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/refint/GorevYonetimSistemi.Core.dll
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.pdb
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/ref/GorevYonetimSistemi.Core.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.sourcelink.json

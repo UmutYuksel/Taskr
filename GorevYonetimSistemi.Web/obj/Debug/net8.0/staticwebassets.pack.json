@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/css/tailwind.css"
     },
     {
+      "Id": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
+      "PackagePath": "staticwebassets/js/JwtToken.js"
+    },
+    {
       "Id": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/script.js",
       "PackagePath": "staticwebassets/js/script.js"
     },

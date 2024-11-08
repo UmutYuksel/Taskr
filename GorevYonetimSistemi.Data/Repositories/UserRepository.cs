@@ -58,6 +58,12 @@ namespace GorevYonetimSistemi.Data.Repositories
         public async Task<User> GetUserByEmail(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
+            
+            if (user == null)
+            {
+                throw new KeyNotFoundException("User not found.");
+            }
+
             return user;
         }
     }

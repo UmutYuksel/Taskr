@@ -1,4 +1,5 @@
 using GorevYonetimSistemi.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GorevYonetimSistemi.Web.Controllers
@@ -13,9 +14,13 @@ namespace GorevYonetimSistemi.Web.Controllers
             _userApiService = userApiService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-           
+           if(User.Identity.IsAuthenticated)
+           {
+            Console.WriteLine("Kullanıcı var");
+           } 
+           Console.WriteLine("Kullanıcı yok");
             return View();
         }
     }

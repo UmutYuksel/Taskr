@@ -1,24 +1,46 @@
-using GorevYonetimSistemi.Data.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using GorevYonetimSistemi.Web.Services;
+using GorevYonetimSistemi.Business.Services.Interfaces;
+using GorevYonetimSistemi.Business.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient();
+
+//HttpClient servislerini ekleyin
 builder.Services.AddScoped<UserApiService>();
 builder.Services.AddScoped<DutyApiService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
-
-// HttpClient için ekleme
-builder.Services.AddHttpClient<UserApiService>(client =>
+// Authentication & Authorization Middleware'ini ekleyin
+builder.Services.AddAuthentication(options =>
 {
-    client.BaseAddress = new Uri("http://localhost:5113/"); // API'nin temel adresi
-});
-builder.Services.AddHttpClient<DutyApiService>(client =>
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
 {
-    client.BaseAddress = new Uri("http://localhost:5113/"); // API'nin temel adresi
+    options.Cookie.Name = "AuthToken";  // Cookie adını belirleyin
+    options.Cookie.HttpOnly = true;     // JavaScript erişimine kapalı
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // HTTPS üzerinden gönderilmesini sağlar
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);  // Cookie süresi
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key"))
+    };
 });
+// Authorization ekleyin
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -26,16 +48,37 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// JWT token doğrulaması için özel middleware
+app.Use(async (context, next) =>
+{
+    var token = context.Request.Cookies["AuthToken"];
+
+    if (!string.IsNullOrEmpty(token))
+    {
+        var tokenService = context.RequestServices.GetRequiredService<ITokenService>();
+
+        var principal = tokenService.ValidateToken(token);
+
+        if (principal != null)
+        {
+            context.User = principal; // Claims bilgilerini User nesnesine atıyoruz
+        }
+    }
+
+    await next.Invoke();
+});
+
 app.UseRouting();
 
-app.UseAuthorization();
+// Authentication ve Authorization middleware sırasını doğru yapın
+app.UseAuthentication(); // Authentication önce
+app.UseAuthorization(); // Authorization sonra
 
 app.MapControllerRoute(
     name: "default",

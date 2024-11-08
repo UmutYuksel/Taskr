@@ -1,4 +1,5 @@
 using GorevYonetimSistemi.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GorevYonetimSistemi.Web.Controllers
@@ -14,7 +15,8 @@ namespace GorevYonetimSistemi.Web.Controllers
             _dutyApiService = dutyApiService;
         }
 
-        public async Task<IActionResult> Index()
+        [Authorize]
+        public IActionResult Index()
         {
             return View();
         }

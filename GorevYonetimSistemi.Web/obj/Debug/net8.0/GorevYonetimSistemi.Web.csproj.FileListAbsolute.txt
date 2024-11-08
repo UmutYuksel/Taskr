@@ -85,3 +85,8 @@
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/AutoMapper.dll
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/obj/Debug/net8.0/GorevYonetimSistemi.Web.sourcelink.json
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/bin/Debug/net8.0/Newtonsoft.Json.dll
