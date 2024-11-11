@@ -1,7 +1,8 @@
 @using System.Security.Claims
 
 @{
-    var userName = User.FindFirst(ClaimTypes.Email)?.Value;
+    var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
 }
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 
     <!-- Sayfa yüklenmeden önce tema kontrolü -->
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.classList.add(savedTheme);
         })();
@@ -39,10 +40,12 @@
         <i class="fa-solid fa-moon text-black hidden" id="darkMode"></i> <!-- Gizli olmalı -->
     </div>
     <!--HEADER SECTION-->
-    <header class="block bg-white dark:bg-black border-b dark:border-darkAccent-500 border-darkAccent-700 py-6 lg:py-12 dark:text-darkContent-100 text-lightText uppercase">
+    <header
+        class="block bg-white dark:bg-black border-b dark:border-darkAccent-500 border-darkAccent-700 py-6 lg:py-12 dark:text-darkContent-100 text-lightText uppercase">
         <div class="container flex items-center justify-between space-x-8 lg:space-x-16">
             <!--Logo-->
-            <a href="@Url.Action("Index", "User")" class="basis-1/4 pl-4 md:pl-0 text-4xl lg:text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-darkAccent-500 to-darkContent-100">Taskr</a>
+            <a href="@Url.Action("Index", "User")"
+                class="basis-1/4 pl-4 md:pl-0 text-4xl lg:text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-darkAccent-500 to-darkContent-100">Taskr</a>
             <!--Mobile Menu-->
             <div class="block md:hidden pr-4">
                 <div class="block space-y-1 cursor-pointer">
@@ -54,22 +57,40 @@
             <!--Navigation-->
             <nav class="basis-2/4 hidden md:flex justify-between flex-1">
                 <div class="flex item-center lg:text-lg space-x-4 lg:space-x-8">
-                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
-                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
-                    <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
-                    <a href="@Url.Action("Index", "Admin")" class="hover:text-darkAccent-500 transition duration-500">admin</a>
+                    @if (@role == "Admin")
+                    {
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
+                        <a href="@Url.Action("Index", "Admin")"
+                            class="hover:text-darkAccent-500 transition duration-500">admin</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
+                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
+                        <a href="@Url.Action("Index", "Admin")"
+                            class="hover:text-darkAccent-500 transition duration-500">admin</a>
+                    }
+
                 </div>
                 <div class="basis-1/4 space-x-4 lg:space-x-8 ">
                     <!--Login Area-->
                     @if (User.Identity!.IsAuthenticated)
                     {
-                        <a asp-controller="User" asp-action="Details" asp-route-id="@userName">@userName</a>
-                        <a asp-controller="Auth" asp-action="Logout">Logout</a>
+                        <a asp-controller="User" asp-action="Details" asp-route-id="@userName"
+                            class="hover:text-darkAccent-500 transition duration-500">@userName</a>
+                        <a asp-controller="Auth" asp-action="Logout"
+                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Logout</a>
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Auth")" class="hover:text-darkAccent-500 transition duration-500">Login</a>
-                        <a href="@Url.Action("Register", "Auth")" class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Sign Up</a>
+                        <a href="@Url.Action("Login", "Auth")"
+                            class="hover:text-darkAccent-500 transition duration-500">Login</a>
+                        <a href="@Url.Action("Register", "Auth")"
+                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Sign
+                            Up</a>
                     }
                 </div>
             </nav>
@@ -84,7 +105,7 @@
 
     <!-- Tema kontrolü ve uygulama -->
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.classList.add(savedTheme);
         })();

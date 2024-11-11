@@ -16,29 +16,28 @@ namespace GorevYonetimSistemi.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserRegisterDto registerDto)
+        public async Task<IActionResult> RegisterUser([FromForm] UserRegisterDto userRegisterDto)
         {
             try
             {
-                Console.WriteLine($"[DEBUG] Register method called with email: {registerDto.Email}");
+                // Kayıt işlemini gerçekleştirin
+                var authResponse = await _authService.RegisterAsync(userRegisterDto);
 
-                var response = await _authService.RegisterAsync(registerDto);
-                
-                if (response == null)
-                {
-                    Console.WriteLine($"[DEBUG] Registration failed for email: {registerDto.Email}");
-                    return BadRequest("Register unsuccessful");
-                }
-
-                Console.WriteLine($"[DEBUG] Registration successful for email: {registerDto.Email}");
-                return Ok(response);
+                // Başarılı yanıt döndür
+                return Ok(authResponse);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                // Kullanıcı zaten var
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] Error occurred during registration: {ex.Message}");
-                return BadRequest(ex.Message);
+                // Diğer hatalar
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
@@ -58,7 +57,7 @@ namespace GorevYonetimSistemi.API.Controllers
                 Console.WriteLine($"[DEBUG] Login successful for email: {loginDto.Email}");
                 return Ok(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"[ERROR] Error occurred during login for email: {loginDto.Email}: {ex.Message}");
                 return Unauthorized(ex.Message);

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GorevYonetimSistemi.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241107075236_InitialCommit")]
-    partial class InitialCommit
+    [Migration("20241111115713_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

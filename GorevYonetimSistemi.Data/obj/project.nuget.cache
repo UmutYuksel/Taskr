@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZFgCoXuVTms=",
+  "dgSpecHash": "x+AWxVQ78a8=",
   "success": true,
-  "projectFilePath": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
+  "projectFilePath": "/Users/iremericek/Taskr/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
   "expectedPackageFiles": [
     "/Users/iremericek/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/iremericek/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

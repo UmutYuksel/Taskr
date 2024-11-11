@@ -3696,11 +3696,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
+      "projectUniqueName": "/Users/iremericek/Taskr/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
       "projectName": "GorevYonetimSistemi.Data",
-      "projectPath": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
+      "projectPath": "/Users/iremericek/Taskr/GorevYonetimSistemi.Data/GorevYonetimSistemi.Data.csproj",
       "packagesPath": "/Users/iremericek/.nuget/packages/",
-      "outputPath": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Data/obj/",
+      "outputPath": "/Users/iremericek/Taskr/GorevYonetimSistemi.Data/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/iremericek/.nuget/NuGet/NuGet.Config"
@@ -3715,8 +3715,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/GorevYonetimSistemi.Core.csproj": {
-              "projectPath": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/GorevYonetimSistemi.Core.csproj"
+            "/Users/iremericek/Taskr/GorevYonetimSistemi.Core/GorevYonetimSistemi.Core.csproj": {
+              "projectPath": "/Users/iremericek/Taskr/GorevYonetimSistemi.Core/GorevYonetimSistemi.Core.csproj"
             }
           }
         }

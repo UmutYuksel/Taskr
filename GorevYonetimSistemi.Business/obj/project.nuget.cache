@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tQ4Fj93+hqE=",
+  "dgSpecHash": "bAxXQFsWXU0=",
   "success": true,
-  "projectFilePath": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Business/GorevYonetimSistemi.Business.csproj",
+  "projectFilePath": "/Users/iremericek/Taskr/GorevYonetimSistemi.Business/GorevYonetimSistemi.Business.csproj",
   "expectedPackageFiles": [
     "/Users/iremericek/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/iremericek/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",

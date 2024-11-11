@@ -10,3 +10,15 @@
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.pdb
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/ref/GorevYonetimSistemi.Core.dll
 /Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.sourcelink.json
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/bin/Debug/net8.0/GorevYonetimSistemi.Core.deps.json
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/bin/Debug/net8.0/GorevYonetimSistemi.Core.dll
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/bin/Debug/net8.0/GorevYonetimSistemi.Core.pdb
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.AssemblyInfoInputs.cache
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.AssemblyInfo.cs
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.csproj.CoreCompileInputs.cache
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.sourcelink.json
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.dll
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/refint/GorevYonetimSistemi.Core.dll
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/GorevYonetimSistemi.Core.pdb
+/Users/iremericek/Taskr/GorevYonetimSistemi.Core/obj/Debug/net8.0/ref/GorevYonetimSistemi.Core.dll

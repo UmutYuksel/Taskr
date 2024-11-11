@@ -9,6 +9,6 @@ namespace GorevYonetimSistemi.Data.Repositories.Interfaces
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(Guid userId);
-        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByEmail(string email, bool throwIfNotFound = true);
     }
 }

@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using GorevYonetimSistemi.Web.Services;
 using GorevYonetimSistemi.Business.Services.Interfaces;
 using GorevYonetimSistemi.Business.Services;
 using System.Text;
+using GorevYonetimSistemi.Data.Repositories.Interfaces;
+using GorevYonetimSistemi.Web.Services.Interfaces;
+using GorevYonetimSistemi.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
 //HttpClient servislerini ekleyin
-builder.Services.AddScoped<UserApiService>();
-builder.Services.AddScoped<DutyApiService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserResponseService, UserResponseSevice>();
 
 // Authentication & Authorization Middleware'ini ekleyin
 builder.Services.AddAuthentication(options =>

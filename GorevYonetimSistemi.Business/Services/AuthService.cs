@@ -32,7 +32,7 @@ namespace GorevYonetimSistemi.Business.Services
         {
             Console.WriteLine($"[DEBUG] Checking if user exists for email: {registerDto.Email}");
 
-            var existingUser = await _userRepository.GetUserByEmail(registerDto.Email!);
+            var existingUser = await _userRepository.GetUserByEmail(registerDto.Email!, throwIfNotFound: false);
 
             if(existingUser != null)
             {
@@ -71,7 +71,7 @@ namespace GorevYonetimSistemi.Business.Services
         {
             Console.WriteLine($"[DEBUG] Attempting login with email: {loginDto.Email}");
 
-            var user = await _userRepository.GetUserByEmail(loginDto.Email!);
+            var user = await _userRepository.GetUserByEmail(loginDto.Email!); // Hata fırlatır
 
             if (user == null || !_passwordService.VerifyPassword(loginDto.Password!, user.Password!))
             {

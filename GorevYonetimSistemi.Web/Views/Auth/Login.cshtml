@@ -1,34 +1,50 @@
 @model GorevYonetimSistemi.Business.Dtos.User.Auth.UserLoginDto
 
 <section class="flex flex-col items-center pt-40">
-  <div
-    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-darkContent-800 dark:border-darkContent-700">
+  <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-darkContent-800 dark:border-darkContent-700">
     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-      <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-darkText">Login
-      </h1>
+      <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-darkText">Login</h1>
+      
       <form asp-action="Login" class="space-y-4 md:space-y-6" method="POST">
-        <ul asp-validation-summary="All" class="text-sm text-red-500"></ul>
+        
+        <!-- Hata mesajlarını burada göster -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+          <div class="text-red-500">
+            <ul>
+              @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+              {
+                <li>@error.ErrorMessage</li>
+              }
+            </ul>
+          </div>
+        }
+
+        <!-- Email alanı -->
         <div>
           <label asp-for="@Model.Email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
           <input asp-for="@Model.Email" type="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-bdarkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
-            placeholder="@Model.Email" required="">
-
-            <span asp-validation-for="@Model.Email" class="text-sm text-red-500"></span>
+                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-bdarkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                 placeholder="example@domain.com" required="">
+          <span asp-validation-for="@Model.Email" class="text-sm text-red-500"></span>
         </div>
+
+        <!-- Password alanı -->
         <div>
           <label asp-for="@Model.Password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
-          <input asp-for="@Model.Password" type="password" placeholder="••••••••"
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
-            placeholder="@Model.Password" required="">
-
-            <span asp-validation-for="@Model.Password" class="text-sm text-red-500"></span>
+          <input asp-for="@Model.Password" type="password" placeholder="••••••"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                 placeholder="@Model.Password" required="">
+          <span asp-validation-for="@Model.Password" class="text-sm text-red-500"></span>
         </div>
+
         <button type="submit"
-          class="w-full text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">Login</button>
-        <p class="text-sm font-light text-darkContent-500 dark:text-darkContent-400">Don't you have an account? <a
-            class="font-medium text-darkAccent-600 hover:underline dark:text-darkAccent-500"
-            href="@Url.Action("Register")">Sign up here</a>
+                class="w-full text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">
+          Login
+        </button>
+
+        <p class="text-sm font-light text-darkContent-500 dark:text-darkContent-400">Don't you have an account? 
+          <a class="font-medium text-darkAccent-600 hover:underline dark:text-darkAccent-500" href="@Url.Action("Register")">Sign up here</a>
         </p>
       </form>
     </div>

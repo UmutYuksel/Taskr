@@ -1,15 +1,19 @@
 {
   "Files": [
     {
-      "Id": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/css/tailwind.css",
+      "Id": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/css/tailwind.css",
       "PackagePath": "staticwebassets/css/tailwind.css"
     },
     {
-      "Id": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
+      "Id": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/img/project/User.png",
+      "PackagePath": "staticwebassets/img/project/User.png"
+    },
+    {
+      "Id": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
       "PackagePath": "staticwebassets/js/JwtToken.js"
     },
     {
-      "Id": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/script.js",
+      "Id": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/js/script.js",
       "PackagePath": "staticwebassets/js/script.js"
     },
     {

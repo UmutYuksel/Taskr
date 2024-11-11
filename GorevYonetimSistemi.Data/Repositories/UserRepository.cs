@@ -14,14 +14,14 @@ namespace GorevYonetimSistemi.Data.Repositories
         }
 
         public async Task<User> GetUserByIdAsync(Guid userId)
-        {   
+        {
             var user = await _context.Users.FirstOrDefaultAsync(i => i.UserId == userId);
 
             if (user == null)
             {
                 throw new KeyNotFoundException("User not found.");
             }
-            
+
             return user;
         }
 
@@ -49,22 +49,23 @@ namespace GorevYonetimSistemi.Data.Repositories
             if (user == null)
             {
                 throw new KeyNotFoundException("User not found.");
-            } 
-            
+            }
+
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email, bool throwIfNotFound = true)
         {
             var user = await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
-            
-            if (user == null)
+
+            if (user == null && throwIfNotFound)
             {
                 throw new KeyNotFoundException("User not found.");
             }
 
             return user;
         }
+
     }
 }

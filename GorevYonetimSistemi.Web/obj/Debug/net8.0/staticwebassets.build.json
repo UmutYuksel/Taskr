@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fxbwJ6hGVYOJ9WSkS7aE/YgqYtUZ2/i14tu3OP0/Rug=",
+  "Hash": "5uVxQZQ9BmrJjP1VpWqC3++R9IWijL62VIDoaAswCkA=",
   "Source": "GorevYonetimSistemi.Web",
   "BasePath": "_content/GorevYonetimSistemi.Web",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "GorevYonetimSistemi.Web/wwwroot",
       "Source": "GorevYonetimSistemi.Web",
-      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "ContentRoot": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/",
       "BasePath": "_content/GorevYonetimSistemi.Web",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/css/tailwind.css",
+      "Identity": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/css/tailwind.css",
       "SourceId": "GorevYonetimSistemi.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "ContentRoot": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/",
       "BasePath": "_content/GorevYonetimSistemi.Web",
       "RelativePath": "css/tailwind.css",
       "AssetKind": "All",
@@ -36,10 +36,29 @@
       "OriginalItemSpec": "wwwroot/css/tailwind.css"
     },
     {
-      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
+      "Identity": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/img/project/User.png",
       "SourceId": "GorevYonetimSistemi.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "ContentRoot": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/",
+      "BasePath": "_content/GorevYonetimSistemi.Web",
+      "RelativePath": "img/project/User.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/project/User.png"
+    },
+    {
+      "Identity": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/js/JwtToken.js",
+      "SourceId": "GorevYonetimSistemi.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/",
       "BasePath": "_content/GorevYonetimSistemi.Web",
       "RelativePath": "js/JwtToken.js",
       "AssetKind": "All",
@@ -55,10 +74,10 @@
       "OriginalItemSpec": "wwwroot/js/JwtToken.js"
     },
     {
-      "Identity": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/js/script.js",
+      "Identity": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/js/script.js",
       "SourceId": "GorevYonetimSistemi.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/iremericek/GorevYonetimSistemi/GorevYonetimSistemi.Web/wwwroot/",
+      "ContentRoot": "/Users/iremericek/Taskr/GorevYonetimSistemi.Web/wwwroot/",
       "BasePath": "_content/GorevYonetimSistemi.Web",
       "RelativePath": "js/script.js",
       "AssetKind": "All",

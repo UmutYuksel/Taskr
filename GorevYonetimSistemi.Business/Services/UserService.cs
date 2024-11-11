@@ -38,24 +38,6 @@ namespace GorevYonetimSistemi.Business.Services
             return _mapper.Map<IEnumerable<UserDto>>(user);
         }
 
-        public async Task<UserDto> CreateUserAsync(UserDto userDto)
-        {
-            if (string.IsNullOrEmpty(userDto.Password))
-            {
-                throw new ArgumentException("Password cannot be null or empty");
-            }
-
-            var user = _mapper.Map<User>(userDto);
-
-            user.UserId = Guid.NewGuid();
-
-            user.Password = _passwordService.HashPassword(userDto.Password);
-
-            await _userRepository.CreateUserAsync(user);
-
-            return _mapper.Map<UserDto>(user);
-        }
-
         public async Task<UserDto> UpdateUserAsync(Guid userId, UserDto userDto)
         {
             var user = await _userRepository.GetUserByIdAsync(userId);

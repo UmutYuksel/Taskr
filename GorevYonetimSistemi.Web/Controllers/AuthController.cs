@@ -1,11 +1,10 @@
 using System.Text;
-using System.Text.Json;
-using GorevYonetimSistemi.Business.Dtos;
 using GorevYonetimSistemi.Business.Dtos.User.Auth;
-using GorevYonetimSistemi.Web.Services;
+using GorevYonetimSistemi.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GorevYonetimSistemi.Web.Controllers
 {
@@ -23,12 +22,10 @@ namespace GorevYonetimSistemi.Web.Controllers
         {
             var registerDto = new UserRegisterDto();
 
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity!.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "User");
             }
-
-            Console.WriteLine("User not authenticated");
             return View(registerDto);
         }
 
@@ -36,11 +33,10 @@ namespace GorevYonetimSistemi.Web.Controllers
         {
             var loginDto = new UserLoginDto();
 
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity!.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "User");
             }
-            Console.WriteLine("User not authenticated");
             return View(loginDto);
         }
 
@@ -51,23 +47,30 @@ namespace GorevYonetimSistemi.Web.Controllers
             {
                 var jsonContent = new StringContent
                 (
-                    JsonSerializer.Serialize(registerDto),
+                    JsonConvert.SerializeObject(registerDto), // Using Newtonsoft.Json
                     Encoding.UTF8,
                     "application/json"
                 );
 
+                 // API çağrısı
                 var response = await _httpClient.PostAsync("http://localhost:5113/api/auth/register", jsonContent);
-
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+                    // API'dan gelen hata mesajını al
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    ModelState.AddModelError(string.Empty, $"Registration failed: {errorMessage}");
                 }
             }
-            ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+            else
+            {
+                // Model geçerli değilse hata mesajı
+                ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+            }
+
             return View(registerDto);
         }
 
@@ -76,9 +79,9 @@ namespace GorevYonetimSistemi.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // API'ya kullanıcı bilgilerini gönder
-                var jsonContent = new StringContent(
-                    JsonSerializer.Serialize(loginDto),
+                var jsonContent = new StringContent
+                (
+                    JsonConvert.SerializeObject(loginDto), // Using Newtonsoft.Json
                     Encoding.UTF8,
                     "application/json"
                 );
@@ -87,34 +90,44 @@ namespace GorevYonetimSistemi.Web.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Token'ı alın
-                    var token = await response.Content.ReadAsStringAsync();
+                    // API yanıtını okuma
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(responseContent);
 
-                    // Cookie ayarlarını yap
-                    var cookieOptions = new CookieOptions
+                    // Eğer deserialization başarılıysa
+                    if (tokenResponse != null)
                     {
-                        HttpOnly = true, // JavaScript ile erişilememe
-                        Secure = true,   // Sadece HTTPS üzerinden gönderilsin
-                        Expires = DateTime.Now.AddHours(1)  // Token'ın geçerlilik süresi
-                    };
+                        // Token'ı ve diğer bilgileri alıyoruz
+                        var token = tokenResponse.Token;
 
-                    // Token'ı cookie'ye ekle
-                    Response.Cookies.Append("AuthToken", token, cookieOptions);
+                        var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Secure = false,
+                            Expires = DateTime.Now.AddHours(1)
+                        };
 
-                    // Login işlemi başarılı, kullanıcının yönlendirilmesi
-                    return RedirectToAction("Index", "User");
+                        Response.Cookies.Append("AuthToken", token!, cookieOptions);
+
+                        return RedirectToAction("Index", "User");
+                    }
+                    else
+                    {
+                        // Token alınamadıysa hata mesajı ekle
+                        ModelState.AddModelError(string.Empty, "Invalid token received from the server.");
+                    }
                 }
                 else
                 {
                     // Hatalı giriş bilgileri
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    ModelState.AddModelError(string.Empty, $"Login failed: {errorMessage}");
                 }
             }
             else
             {
                 // Model geçerli değilse hata mesajı
                 ModelState.AddModelError(string.Empty, "Giriş bilgileri geçersiz.");
-                return View(loginDto);
             }
 
             // Hata durumunda tekrar login sayfasına dön
