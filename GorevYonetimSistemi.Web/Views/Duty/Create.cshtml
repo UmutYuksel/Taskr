@@ -1,0 +1,46 @@
+@model GorevYonetimSistemi.Business.Dtos.Duty.DutyDto
+<div class="mt-16 container">
+    <div
+        class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white rounded-lg dark:bg-darkContent-800 dark:border-darkContent-700">
+
+        <div
+            class="px-4 py-4 flex items-center justify-start bg-white dark:bg-darkContent-700 border-b dark:border-darkAccent-500 border-darkAccent-700">
+            <div class="px-4 text-black dark:text-white">
+                <a href="@Url.Action("Index")"><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></a>
+                
+            </div>
+            <h2 class=" text-lightText dark:text-darkText">New Task</h2>
+        </div>
+        <div class="py-4 w-full text-sm text-gray-900 dark:text-darkText px-4">
+            @if (TempData["Error Message"] != null)
+            {
+                <div class="text-red-500">
+                    @TempData["Error Message"] @TempData["SuccessMessage"]
+                </div>
+            }
+            <form method="post" class="py-4 px-4 space-y-4 md:space-y-6 bg-gray-50 dark:bg-darkContent-600 rounded-lg">
+                <div class="w-full">
+                    <label asp-for="@Model.Title"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
+                    <input asp-for="@Model.Title" type="text"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                        required="">
+                    <span asp-validation-for="@Model.Title" class="text-sm text-red-500"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="@Model.Description"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
+                    <textarea asp-for="@Model.Description" type="text"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                        required="" style="resize: none;"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-sm text-red-500"></span>
+                </div>
+                <button type="submit"
+                    class="w-full text-white bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkAccent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">
+                    Create Task
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

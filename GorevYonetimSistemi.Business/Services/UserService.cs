@@ -1,4 +1,5 @@
 using AutoMapper;
+using GorevYonetimSistemi.Business.Dtos.Duty;
 using GorevYonetimSistemi.Business.Dtos.User;
 using GorevYonetimSistemi.Business.Services.Interfaces;
 using GorevYonetimSistemi.Data.Entities;
@@ -10,14 +11,19 @@ namespace GorevYonetimSistemi.Business.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserDutyService _userDutyService;
         private readonly IMapper _mapper;
-        private readonly PasswordService _passwordService;
 
-        public UserService(IUserRepository userRepository, IMapper mapper, PasswordService passwordService)
+        public UserService
+        (
+            IUserRepository userRepository,
+            IMapper mapper,
+            IUserDutyService userDutyService
+        )
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _passwordService = passwordService;
+            _userDutyService = userDutyService;
         }
 
         public async Task<UserDto> GetUserByIdAsync(Guid userId)
@@ -54,14 +60,7 @@ namespace GorevYonetimSistemi.Business.Services
 
         public async Task DeleteUserAsync(Guid userId)
         {
-            var user = await _userRepository.GetUserByIdAsync(userId);
-
-            if (user == null)
-            {
-                throw new KeyNotFoundException("User not found.");
-            }
-
-            await _userRepository.DeleteUserAsync(userId);
+            await _userDutyService.DeleteUserAndRelatedDutiesAsync(userId);
         }
     }
 }

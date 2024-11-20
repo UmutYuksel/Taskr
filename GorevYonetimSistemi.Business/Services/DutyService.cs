@@ -1,6 +1,8 @@
 using AutoMapper;
 using GorevYonetimSistemi.Business.Dtos.Duty;
+using GorevYonetimSistemi.Business.Dtos.User;
 using GorevYonetimSistemi.Business.Services.Interfaces;
+using GorevYonetimSistemi.Core.Enums;
 using GorevYonetimSistemi.Data.Entities;
 using GorevYonetimSistemi.Data.Repositories.Interfaces;
 
@@ -11,7 +13,11 @@ namespace GorevYonetimSistemi.Business.Services
         private readonly IDutyRepository _dutyRepository;
         private readonly IMapper _mapper;
 
-        public DutyService(IDutyRepository dutyRepository,IMapper mapper)
+        public DutyService
+        (
+            IDutyRepository dutyRepository,
+            IMapper mapper
+        )
         {
             _dutyRepository = dutyRepository;
             _mapper = mapper;
@@ -20,8 +26,8 @@ namespace GorevYonetimSistemi.Business.Services
         public async Task<DutyDto> GetDutyByIdAsync(Guid dutyId)
         {
             var duty = await _dutyRepository.GetDutyByIdAsync(dutyId);
-            
-            if(duty == null)
+
+            if (duty == null)
             {
                 throw new KeyNotFoundException("Duty not found.");
             }
@@ -37,15 +43,20 @@ namespace GorevYonetimSistemi.Business.Services
 
         public async Task<DutyDto> CreateDutyAsync(DutyDto dutyDto)
         {
-            var duty = _mapper.Map<Duty>(dutyDto);
-
-            duty.DutyId = Guid.NewGuid();
-
+            var duty = new Duty
+            {
+                DutyId = Guid.NewGuid(),
+                Title = dutyDto.Title,
+                Description = dutyDto.Description,
+                Progress = ProgressEnum.Assignment_Awaiting,
+                CreatedDate = DateTime.Now, 
+            };
+            
             await _dutyRepository.CreateDutyAsync(duty);
             return _mapper.Map<DutyDto>(duty);
         }
 
-        public async Task<DutyDto> UpdateDutyAsync(Guid dutyId,DutyDto dutyDto)
+        public async Task<DutyDto> UpdateDutyAsync(Guid dutyId, DutyDto dutyDto)
         {
             var duty = await _dutyRepository.GetDutyByIdAsync(dutyId);
 
@@ -54,20 +65,13 @@ namespace GorevYonetimSistemi.Business.Services
                 throw new KeyNotFoundException("Duty not found.");
             }
 
-            _mapper.Map(dutyDto,duty);
+            _mapper.Map(dutyDto, duty);
             await _dutyRepository.UpdateDutyAsync(duty);
             return _mapper.Map<DutyDto>(duty);
         }
 
         public async Task DeleteDutyAsync(Guid dutyId)
         {
-            var duty = await _dutyRepository.GetDutyByIdAsync(dutyId);
-
-            if (duty == null)
-            {
-                throw new KeyNotFoundException("Duty not found.");
-            }
-
             await _dutyRepository.DeleteDutyAsync(dutyId);
         }
     }

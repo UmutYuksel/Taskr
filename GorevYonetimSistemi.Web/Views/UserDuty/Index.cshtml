@@ -1,0 +1,50 @@
+@model IEnumerable<GorevYonetimSistemi.Data.Entities.UserDuty>
+
+@{
+    ViewData["Title"] = "User Duties";
+}
+
+<h1>User Duties</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>Duty Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var userDuty in Model)
+            {
+                <tr>
+                    <td>@userDuty.UserDutyId</td>
+                    <td>@userDuty.UserId</td>
+                    <td>@userDuty.User?.Username ?? "Unknown"</td> <!-- User Name -->
+                    <td>@userDuty.Duty?.Title ?? "No Duty"</td> <!-- Duty Name -->
+                    <td>@userDuty.Duty?.Description ?? "No Description"</td> <!-- Duty Description -->
+                    <td>@userDuty.Duty?.CreatedDate.ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No user duties available.
+    </div>
+}
+
+@if (TempData["Error Message"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Error Message"]
+    </div>
+}

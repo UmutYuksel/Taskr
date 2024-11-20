@@ -16,7 +16,7 @@ namespace GorevYonetimSistemi.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromForm] UserRegisterDto userRegisterDto)
+        public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {

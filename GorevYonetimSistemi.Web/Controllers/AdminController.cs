@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using GorevYonetimSistemi.Business.Dtos.User;
 using GorevYonetimSistemi.Business.Services;
 using GorevYonetimSistemi.Data.Entities;
@@ -20,6 +21,16 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            // Kullanıcının claim'lerinden rol değerini al
+            var roleClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            if (roleClaim == null || roleClaim.Value != "Admin")
+            {
+                // Eğer rol Admin değilse veya claim bulunmuyorsa User controller'ındaki Index'e yönlendir
+                return RedirectToAction("Index", "User");
+            }
+
+            // Admin ise kullanıcıları getir
             var (users, message) = await _userResponse.GetAllUsersAsync();
 
             if (users != null)
@@ -51,5 +62,23 @@ namespace GorevYonetimSistemi.Web.Controllers
             TempData["Error Message"] = message;
             return View("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(Guid userId)
+        {
+            var (success, message) = await _userResponse.DeleteUserAsync(userId);
+
+            if (success)
+            {
+                TempData["SuccessMessage"] = "User deleted successfully.";
+            }
+            else
+            {
+                TempData["Error Message"] = message;
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

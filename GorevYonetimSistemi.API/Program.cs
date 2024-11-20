@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GorevYonetimSistemi.API.Middleware;
+using GorevYonetimSistemi.Core.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,14 +70,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Register Business Services and Data Repositories
+// Register Business Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDutyService, DutyService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserDutyService, UserDutyService>();
+builder.Services.AddScoped<PasswordService>();
+
+// Register Data Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDutyRepository, DutyRepositoy>();
-builder.Services.AddScoped<PasswordService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserDutyRepository, UserDutyRepository>();
+
+
+// Register IMapper
 builder.Services.ConfigureAutoMappers();
 
 var app = builder.Build();

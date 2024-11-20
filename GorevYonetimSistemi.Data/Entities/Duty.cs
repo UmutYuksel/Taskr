@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using GorevYonetimSistemi.Core.Enums;
 
 namespace GorevYonetimSistemi.Data.Entities
 {
@@ -15,16 +17,14 @@ namespace GorevYonetimSistemi.Data.Entities
         [StringLength(2000, ErrorMessage = "Description cannot be longer than 2000 characters.")]
         public string? Description { get; set; }
 
-        public bool IsCompleted { get; set; }
+        public ProgressEnum Progress { get; set; }
 
         [Required(ErrorMessage = "Created date is required.")]
         [DataType(DataType.DateTime, ErrorMessage = "Invalid date format.")]
         public DateTime CreatedDate { get; set; }
 
-        [Required(ErrorMessage = "User ID is required.")]
-        public Guid UserId { get; set; }
-
-        // Foreign key relationship
-        public User? User { get; set; }
+        [JsonIgnore]
+        public ICollection<UserDuty> UserDuties { get; set; } = new List<UserDuty>();
     }
+
 }

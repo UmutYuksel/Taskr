@@ -29,12 +29,6 @@ namespace GorevYonetimSistemi.Business.Services
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
-            Console.WriteLine("[DEBUG] Generated Claims:");
-            foreach (var claim in claims)
-            {
-                Console.WriteLine($"[DEBUG] {claim.Type}: {claim.Value}");
-            }
-
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -46,8 +40,6 @@ namespace GorevYonetimSistemi.Business.Services
                 expires: DateTime.Now.AddHours(_tokenExpiration),
                 signingCredentials: creds
             );
-
-            Console.WriteLine($"[DEBUG] Generated JWT Token: {new JwtSecurityTokenHandler().WriteToken(token)}");
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -65,13 +57,6 @@ namespace GorevYonetimSistemi.Business.Services
                     ValidateLifetime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 }, out var validatedToken);
-
-                Console.WriteLine("[DEBUG] Validated Claims:");
-                foreach (var claim in principal.Claims)
-                {
-                    Console.WriteLine($"[DEBUG] {claim.Type}: {claim.Value}");
-                }
-
                 return principal;
             }
             catch (SecurityTokenException ex)

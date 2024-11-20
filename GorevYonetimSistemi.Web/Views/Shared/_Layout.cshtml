@@ -36,8 +36,7 @@
 <body class="font-open bg-darkContent-0 dark:bg-darkContent-1000">
     <!--Dark-Light-->
     <div class="absolute top-5 left-5 cursor-pointer text-xl">
-        <i class="fa-solid fa-sun text-white" id="lightMode"></i> <!-- Gözükmeli -->
-        <i class="fa-solid fa-moon text-black hidden" id="darkMode"></i> <!-- Gizli olmalı -->
+        <i class="fa-solid fa-moon text-black" id="screenMode"></i>
     </div>
     <!--HEADER SECTION-->
     <header
@@ -48,30 +47,20 @@
                 class="basis-1/4 pl-4 md:pl-0 text-4xl lg:text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-darkAccent-500 to-darkContent-100">Taskr</a>
             <!--Mobile Menu-->
             <div class="block md:hidden pr-4">
-                <div class="block space-y-1 cursor-pointer">
-                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
-                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
-                    <div class="bg-duty-grey w-8 h-1 rounded-full"></div>
-                </div>
+                <i class="fa fa-bars fa-2xl"></i>
             </div>
             <!--Navigation-->
             <nav class="basis-2/4 hidden md:flex justify-between flex-1">
                 <div class="flex item-center lg:text-lg space-x-4 lg:space-x-8">
                     @if (@role == "Admin")
                     {
-                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
-                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
-                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
-                        <a href="@Url.Action("Index", "Admin")"
-                            class="hover:text-darkAccent-500 transition duration-500">admin</a>
+                        <a href="@Url.Action("Index", "Duty")" class="hover:text-darkAccent-500 transition duration-500">tasks</a>
+                        <a href="@Url.Action("Index","UserDuty")" class="hover:text-darkAccent-500 transition duration-500">task assignment</a>
+                        <a href="@Url.Action("Index", "Admin")" class="hover:text-darkAccent-500 transition duration-500">admin</a>
                     }
                     else
                     {
-                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">my tasks</a>
-                        <a href="#" class="hover:text-darkAccent-500 transition duration-500">new tasks</a>
                         <a href="#" class="hover:text-darkAccent-500 transition duration-500">user</a>
-                        <a href="@Url.Action("Index", "Admin")"
-                            class="hover:text-darkAccent-500 transition duration-500">admin</a>
                     }
 
                 </div>
@@ -82,15 +71,16 @@
                         <a asp-controller="User" asp-action="Details" asp-route-id="@userName"
                             class="hover:text-darkAccent-500 transition duration-500">@userName</a>
                         <a asp-controller="Auth" asp-action="Logout"
-                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Logout</a>
+                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Logout
+                        </a>
                     }
                     else
                     {
                         <a href="@Url.Action("Login", "Auth")"
                             class="hover:text-darkAccent-500 transition duration-500">Login</a>
                         <a href="@Url.Action("Register", "Auth")"
-                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Sign
-                            Up</a>
+                            class="whitespace-nowrap text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800 cursor-pointer transition duration-500">Sign Up
+                        </a>
                     }
                 </div>
             </nav>

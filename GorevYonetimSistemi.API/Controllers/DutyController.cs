@@ -1,6 +1,7 @@
 using GorevYonetimSistemi.Business.Dtos.Duty;
 using GorevYonetimSistemi.Business.Services.Interfaces;
 using GorevYonetimSistemi.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GorevYonetimSistemi.API.Controllers
@@ -58,12 +59,12 @@ namespace GorevYonetimSistemi.API.Controllers
         public async Task<IActionResult> CreateDuty([FromBody] DutyDto dutyDto)
         {
             try
-            {   
-                if(!ModelState.IsValid)
+            {
+                if (!ModelState.IsValid)
                 {
-                    return  BadRequest(ModelState);
+                    return BadRequest(ModelState);
                 }
-                
+
                 var createdDuty = await _dutyService.CreateDutyAsync(dutyDto);
 
                 if (createdDuty == null)
@@ -83,7 +84,7 @@ namespace GorevYonetimSistemi.API.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
@@ -105,7 +106,7 @@ namespace GorevYonetimSistemi.API.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        
+
         [HttpDelete("{dutyId:guid}")]
         public async Task<IActionResult> DeleteDuty(Guid dutyId)
         {

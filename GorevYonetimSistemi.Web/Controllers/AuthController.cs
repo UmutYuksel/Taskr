@@ -47,12 +47,16 @@ namespace GorevYonetimSistemi.Web.Controllers
             {
                 var jsonContent = new StringContent
                 (
-                    JsonConvert.SerializeObject(registerDto), // Using Newtonsoft.Json
+                    JsonConvert.SerializeObject(registerDto),
                     Encoding.UTF8,
                     "application/json"
                 );
 
-                 // API çağrısı
+                var jsonString = JsonConvert.SerializeObject(registerDto);
+                Console.WriteLine($"Serialized JSON: {jsonString}");
+
+
+                // API çağrısı
                 var response = await _httpClient.PostAsync("http://localhost:5113/api/auth/register", jsonContent);
                 if (response.IsSuccessStatusCode)
                 {

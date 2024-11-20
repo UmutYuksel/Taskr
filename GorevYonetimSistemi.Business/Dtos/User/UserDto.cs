@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using GorevYonetimSistemi.Core.Enums;
 
 namespace GorevYonetimSistemi.Business.Dtos.User
 {
@@ -21,6 +22,6 @@ namespace GorevYonetimSistemi.Business.Dtos.User
         public string? Password { get; set; }
 
         [Required(ErrorMessage = "Role is required.")]
-        public Role Role { get; set; }
+        public RoleEnum Role { get; set; }
     }
 }

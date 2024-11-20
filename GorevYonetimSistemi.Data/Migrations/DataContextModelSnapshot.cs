@@ -31,7 +31,7 @@ namespace GorevYonetimSistemi.Data.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsCompleted")
+                    b.Property<int>("Progress")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -39,14 +39,9 @@ namespace GorevYonetimSistemi.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("DutyId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Duties", (string)null);
+                    b.ToTable("Duties");
                 });
 
             modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.User", b =>
@@ -74,18 +69,54 @@ namespace GorevYonetimSistemi.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.Duty", b =>
+            modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.UserDuty", b =>
                 {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("DutyId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserDutyId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "DutyId");
+
+                    b.HasIndex("DutyId");
+
+                    b.ToTable("UserDuties");
+                });
+
+            modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.UserDuty", b =>
+                {
+                    b.HasOne("GorevYonetimSistemi.Data.Entities.Duty", "Duty")
+                        .WithMany("UserDuties")
+                        .HasForeignKey("DutyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GorevYonetimSistemi.Data.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserDuties")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Duty");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.Duty", b =>
+                {
+                    b.Navigation("UserDuties");
+                });
+
+            modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.User", b =>
+                {
+                    b.Navigation("UserDuties");
                 });
 #pragma warning restore 612, 618
         }

@@ -66,20 +66,27 @@ namespace GorevYonetimSistemi.Web.Services
 
                 var response = await _httpClient.PutAsync($"{_apiBaseUrl}/{userId}", content);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var updatedUser = JsonConvert.DeserializeObject<UserDto>(json);
-                    return (updatedUser, string.Empty);
-                }
+                // Başarısız yanıt durumunda istisna fırlatır
+                response.EnsureSuccessStatusCode();
 
-                return (null, "User update failed.");
+                var json = await response.Content.ReadAsStringAsync();
+                var updatedUser = JsonConvert.DeserializeObject<UserDto>(json);
+                return (updatedUser, string.Empty);
             }
-            catch (Exception)
+            catch (HttpRequestException ex)
             {
+                // HTTP hataları için
+                Console.WriteLine($"HTTP Error: {ex.Message}");
+                return (null, "User update failed due to HTTP error.");
+            }
+            catch (Exception ex)
+            {
+                // Diğer hatalar için
+                Console.WriteLine($"Error updating user: {ex.Message}");
                 return (null, "An error occurred while updating the user.");
             }
         }
+    
 
         public async Task<(bool, string)> DeleteUserAsync(Guid userId)
         {

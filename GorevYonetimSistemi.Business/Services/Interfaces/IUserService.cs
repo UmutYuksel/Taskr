@@ -1,3 +1,4 @@
+using GorevYonetimSistemi.Business.Dtos.Duty;
 using GorevYonetimSistemi.Business.Dtos.User;
 using Microsoft.AspNetCore.Http;
 

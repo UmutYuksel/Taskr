@@ -6,11 +6,6 @@ namespace GorevYonetimSistemi.Web.Controllers
     {
         public IActionResult Index()
         {
-           if(User.Identity!.IsAuthenticated)
-           {
-            Console.WriteLine("Kullanıcı var");
-           } 
-           Console.WriteLine("Kullanıcı yok");
             return View();
         }
     }

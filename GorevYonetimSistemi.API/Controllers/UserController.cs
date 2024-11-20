@@ -59,7 +59,7 @@ namespace GorevYonetimSistemi.API.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
@@ -82,7 +82,7 @@ namespace GorevYonetimSistemi.API.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        
+
         [HttpDelete("{userId:guid}")]
         public async Task<IActionResult> DeleteUser(Guid userId)
         {

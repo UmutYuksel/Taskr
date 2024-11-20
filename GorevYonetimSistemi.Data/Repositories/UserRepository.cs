@@ -15,7 +15,10 @@ namespace GorevYonetimSistemi.Data.Repositories
 
         public async Task<User> GetUserByIdAsync(Guid userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(i => i.UserId == userId);
+            var user = await _context.Users
+                                     .Include(u => u.UserDuties)
+                                     .ThenInclude(ud => ud.Duty)
+                                     .FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -27,7 +30,10 @@ namespace GorevYonetimSistemi.Data.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                                 .Include(u => u.UserDuties)
+                                 .ThenInclude(ud => ud.Duty)
+                                 .ToListAsync();
         }
 
         public async Task CreateUserAsync(User user)
@@ -55,7 +61,7 @@ namespace GorevYonetimSistemi.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserByEmail(string email, bool throwIfNotFound = true)
+        public async Task<User?> GetUserByEmail(string email, bool throwIfNotFound = true)
         {
             var user = await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
 
@@ -66,6 +72,5 @@ namespace GorevYonetimSistemi.Data.Repositories
 
             return user;
         }
-
     }
 }

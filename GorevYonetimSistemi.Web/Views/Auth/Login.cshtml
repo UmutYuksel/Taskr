@@ -24,7 +24,7 @@
         <div>
           <label asp-for="@Model.Email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
           <input asp-for="@Model.Email" type="text"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-bdarkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText"
                  placeholder="example@domain.com" required="">
           <span asp-validation-for="@Model.Email" class="text-sm text-red-500"></span>
         </div>
@@ -33,13 +33,13 @@
         <div>
           <label asp-for="@Model.Password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText"></label>
           <input asp-for="@Model.Password" type="password" placeholder="••••••"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-darkAccent-600 focus:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText"
                  placeholder="@Model.Password" required="">
           <span asp-validation-for="@Model.Password" class="text-sm text-red-500"></span>
         </div>
 
         <button type="submit"
-                class="w-full text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">
+                class="w-full text-darkText bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkContent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700">
           Login
         </button>
 
