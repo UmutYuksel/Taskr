@@ -19,7 +19,7 @@ namespace GorevYonetimSistemi.Web.Controllers
             _httpClient = httpClient;
         }
 
-        // Görevleri listele
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var response = await _httpClient.GetAsync(_apiBaseUrl);
@@ -94,7 +94,7 @@ namespace GorevYonetimSistemi.Web.Controllers
             return View(dutyDto);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid dutyId, DutyDto dutyDto)
         {

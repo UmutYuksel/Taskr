@@ -1,0 +1,90 @@
+@model GorevYonetimSistemi.Web.ViewModels.UserDutyAssignViewModel
+
+<div class="mt-16 container">
+    <div
+        class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white rounded-lg dark:bg-darkContent-800 dark:border-darkContent-700">
+        <div
+            class="px-4 py-4 flex items-center justify-start bg-white dark:bg-darkContent-700 border-b dark:border-darkAccent-500 border-darkAccent-700">
+            <div class="px-4 text-black dark:text-white">
+                <button id="go-back">
+                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+            <h2 class="text-lightText dark:text-darkText">User Assign</h2>
+        </div>
+
+        <div class="py-4 w-full text-sm text-gray-900 dark:text-darkText px-4">
+            @if (TempData["Error Message"] != null)
+            {
+                <div class="text-red-500">
+                    @TempData["Error Message"] @TempData["SuccessMessage"]
+                </div>
+            }
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="px-4 flex flex-col items-center justify-between">
+
+                <div class="px-4 py-4 w-full">
+                    <label for="userId">User</label>
+                    <select class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 dark:bg-darkContent-500 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="UserDutyDto.UserId">
+                        <option value="">Select a User</option>
+                        @foreach (var user in Model.Users)
+                        {
+                            <option value="@user.UserId">@user.Username</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="px-4 py-4 w-full">
+                    <label for="dutyId">Duty</label>
+                    <select class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 dark:bg-darkContent-500 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="UserDutyDto.DutyId" id="dutySelect">
+                        <option value="">Select a Duty</option>
+                        @foreach (var duty in Model.Duties)
+                        {
+                            <option value="@duty.DutyId" data-description="@duty.Description">@duty.Title</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="px-4 py-4 w-full">
+                    <label for="DutyDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-darkText">Duty Description</label>
+                    @Html.TextAreaFor(model => model.UserDutyDto.DutyDescription, new
+                        {
+                            @class = "bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500",
+                            @style = "resize:none;",
+                            @readonly =
+                             "readonly",
+                            id = "DutyDescription"
+                        })
+                </div>
+
+                <div class="px-2 py-4">
+                    <button type="submit"
+                    class="w-full text-white bg-darkAccent-600 hover:bg-darkAccent-700 focus:ring-4 focus:outline-none focus:ring-darkAccent-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkAccent-600 dark:hover:bg-darkAccent-700 dark:focus:ring-darkAccent-800">
+                    Assign to user
+                </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById("go-back").addEventListener("click", () => {
+        history.back();
+    });
+
+    // Duty seçildiğinde DutyDescription'ı doldur ve readonly yap
+    document.getElementById("dutySelect").addEventListener("change", function () {
+        var selectedOption = this.options[this.selectedIndex];
+        var dutyDescription = selectedOption.getAttribute("data-description");
+
+        // DutyDescription alanını doldur ve readonly yap
+        var dutyDescriptionField = document.getElementById("DutyDescription");
+        dutyDescriptionField.value = dutyDescription;
+        dutyDescriptionField.setAttribute("readonly", "readonly");
+    });
+</script>

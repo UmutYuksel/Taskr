@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using GorevYonetimSistemi.Core.Enums;
 
 namespace GorevYonetimSistemi.Data.Entities
 {
@@ -7,15 +8,9 @@ namespace GorevYonetimSistemi.Data.Entities
     {
         [Key]
         public Guid UserDutyId { get; set; }
-
         public Guid UserId { get; set; }
-
-        [JsonIgnore]
         public User? User { get; set; }
-
         public Guid DutyId { get; set; }
-
-        [JsonIgnore]
         public Duty? Duty { get; set; }
     }
 }

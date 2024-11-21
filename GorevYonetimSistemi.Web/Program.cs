@@ -5,6 +5,7 @@ using System.Text;
 using GorevYonetimSistemi.Data.Repositories.Interfaces;
 using GorevYonetimSistemi.Web.Services.Interfaces;
 using GorevYonetimSistemi.Web.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,13 @@ builder.Services.AddAuthentication(options =>
 });
 // Authorization ekleyin
 builder.Services.AddAuthorization();
+
+builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        });
 
 var app = builder.Build();
 

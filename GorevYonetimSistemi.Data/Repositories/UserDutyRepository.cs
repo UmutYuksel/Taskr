@@ -1,3 +1,4 @@
+using GorevYonetimSistemi.Core.Enums;
 using GorevYonetimSistemi.Data.Entities;
 using GorevYonetimSistemi.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -74,7 +75,12 @@ namespace GorevYonetimSistemi.Data.Repositories
                 DutyId = dutyId,
                 UserId = userId
             };
+            
+            duty.Progress = ProgressEnum.OnHold;
+            duty.CreatedDate = DateTime.Now;
+            
             duty.UserDuties.Add(userDuty);
+            await _dutyRepository.UpdateDutyAsync(duty);
             await _context.SaveChangesAsync();
         }
 

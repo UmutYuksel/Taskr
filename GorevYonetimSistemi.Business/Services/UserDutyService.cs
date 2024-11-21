@@ -1,7 +1,9 @@
 using AutoMapper;
 using GorevYonetimSistemi.Business.Dtos.Duty;
 using GorevYonetimSistemi.Business.Dtos.User;
+using GorevYonetimSistemi.Business.Dtos.UserDuty;
 using GorevYonetimSistemi.Business.Services.Interfaces;
+using GorevYonetimSistemi.Core.Enums;
 using GorevYonetimSistemi.Data.Entities;
 using GorevYonetimSistemi.Data.Repositories.Interfaces;
 
@@ -55,7 +57,7 @@ namespace GorevYonetimSistemi.Business.Services
             await _userDutyRepository.DeleteUserAndRelatedDutiesAsync(userId);
         }
 
-        public async Task<List<UserDuty>> GetAllUserDutiesAsync()
+        public async Task<List<UserDutyDto>> GetAllUserDutiesAsync()
         {
             var userDuties = await _userDutyRepository.GetAllAsync();
 
@@ -64,7 +66,31 @@ namespace GorevYonetimSistemi.Business.Services
                 throw new KeyNotFoundException("No UserDuties found.");
             }
 
-            return userDuties;
+            // DutyId bazında gruplandırıyoruz
+            var groupedDuties = userDuties
+                .GroupBy(ud => ud.DutyId)
+                .Select(group => new UserDutyDto
+                {
+                    UserDutyId = group.First().UserDutyId, // İlk UserDuty ID'sini alıyoruz
+                    DutyId = group.Key, // Görevin ID'si
+                    UserId = group.Key,
+                    DutyTitle = group.First().Duty?.Title, // Görevin başlığı
+                    DutyDescription = group.First().Duty?.Description, // Görevin açıklaması
+                    DutyProgress = group.First().Duty?.Progress ?? ProgressEnum.NotStarted, // Görevin durumu
+                    DutyCreatedDate = group.First().Duty?.CreatedDate ?? DateTime.MinValue, // Görevin oluşturulma tarihi
+
+                    // Kullanıcı bilgilerini bir UserDto listesi olarak dönüştürüyoruz
+                    Users = group.Select(ud => new UserDto
+                    {
+                        UserId = ud.User?.UserId ?? Guid.Empty,
+                        Username = ud.User?.Username ?? "Unknown",
+                        Email = ud.User?.Email,
+                        Role = ud.User?.Role ?? RoleEnum.User
+                    }).ToList()
+                })
+                .ToList();
+
+            return groupedDuties;
         }
 
         public async Task<List<UserDuty>> GetUserDutiesByUserIdAsync(Guid userId)

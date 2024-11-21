@@ -1,5 +1,6 @@
 using GorevYonetimSistemi.Business.Dtos.Duty;
 using GorevYonetimSistemi.Business.Dtos.User;
+using GorevYonetimSistemi.Business.Dtos.UserDuty;
 using GorevYonetimSistemi.Data.Entities;
 
 namespace GorevYonetimSistemi.Business.Services.Interfaces
@@ -11,7 +12,7 @@ namespace GorevYonetimSistemi.Business.Services.Interfaces
         Task RemoveUserFromDutyAsync(Guid userId, Guid dutyId);
         Task<IEnumerable<UserDto>> GetUsersByDutyIdAsync(Guid dutyId);
         Task DeleteUserAndRelatedDutiesAsync(Guid userId);
-        Task<List<UserDuty>> GetAllUserDutiesAsync();
+        Task<List<UserDutyDto>> GetAllUserDutiesAsync();
         Task<List<UserDuty>> GetUserDutiesByUserIdAsync(Guid userId);
     }
 }

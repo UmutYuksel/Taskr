@@ -6,8 +6,9 @@
         <div
             class="px-4 py-4 flex items-center justify-start bg-white dark:bg-darkContent-700 border-b dark:border-darkAccent-500 border-darkAccent-700">
             <div class="px-4 text-black dark:text-white">
-                <a href="@Url.Action("Index")"><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></a>
-                
+                <button id="go-back">
+                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+                </button>
             </div>
             <h2 class=" text-lightText dark:text-darkText">New Task</h2>
         </div>
@@ -44,3 +45,8 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("go-back").addEventListener("click", () => {
+  history.back();
+});
+</script>

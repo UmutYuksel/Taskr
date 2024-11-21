@@ -41,7 +41,7 @@ namespace GorevYonetimSistemi.Data.Migrations
 
                     b.HasKey("DutyId");
 
-                    b.ToTable("Duties");
+                    b.ToTable("Duties", (string)null);
                 });
 
             modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.User", b =>
@@ -69,7 +69,7 @@ namespace GorevYonetimSistemi.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.UserDuty", b =>
@@ -87,7 +87,7 @@ namespace GorevYonetimSistemi.Data.Migrations
 
                     b.HasIndex("DutyId");
 
-                    b.ToTable("UserDuties");
+                    b.ToTable("UserDuties", (string)null);
                 });
 
             modelBuilder.Entity("GorevYonetimSistemi.Data.Entities.UserDuty", b =>
