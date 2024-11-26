@@ -2,10 +2,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="mt-16 container">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white rounded-lg dark:bg-darkContent-800 dark:border-darkContent-700">
-        <div class="px-4 py-4 flex items-center justify-normal bg-white dark:bg-darkContent-800 border-b dark:border-darkAccent-500 border-darkAccent-700">
+    <div
+        class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white rounded-lg dark:bg-darkContent-800 dark:border-darkContent-700">
+        <div
+            class="px-4 py-4 flex items-center justify-normal bg-white dark:bg-darkContent-800 border-b dark:border-darkAccent-500 border-darkAccent-700">
             <h2 class="px-4 text-lightText dark:text-darkText">All Tasks</h2>
-            <button class="bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-semibold px-1 py-1 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500">
+            <button
+                class="bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-semibold px-1 py-1 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500">
                 <a href="@Url.Action("Create")" class="px-4 py-4">New Task</a>
             </button>
             @if (TempData["Error Message"] != null)
@@ -19,7 +22,8 @@
         <!-- Table Wrapper with fixed height and scrollable body -->
         <div class="overflow-y-auto max-h-[400px] lg:max-h-[500px]">
             <table class="w-full text-sm text-gray-900 dark:text-darkText ">
-                <thead class="h-10 text-l text-gray-900 dark:text-darkText uppercase bg-gray-50 dark:bg-darkContent-500 sticky top-0 z-10">
+                <thead
+                    class="h-10 text-l text-gray-900 dark:text-darkText uppercase bg-gray-50 dark:bg-darkContent-500 sticky top-0 z-10">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-center">Name</th>
                         <th scope="col" class="px-6 py-3 text-center">Description</th>
@@ -40,19 +44,24 @@
                             </td>
                             <td class="px-6 py-6 text-center">
                                 <div class="flex justify-center space-x-2">
-                                    <button class="bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500" 
-                                            data-dutyId="@duty.DutyId" data-title="@duty.Title" data-desc="@duty.Description"
-                                            data-progress="@duty.Progress" data-createdDate="@duty.CreatedDate"
-                                            onclick="showModal(event)">
+                                    <button
+                                        class="bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500"
+                                        data-dutyId="@duty.DutyId" data-title="@duty.Title" data-desc="@duty.Description"
+                                        data-progress="@duty.Progress" data-createdDate="@duty.CreatedDate"
+                                        onclick="showModal(event)">
                                         <i class="fa fa-edit fa-md mr-1" aria-hidden="true"></i>
                                         <span>Edit</span>
                                     </button>
-                                    <form method="post" asp-action="Delete" asp-route-dutyId="@duty.DutyId" class="delete-form">
-                                        <button type="button" class="bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500 delete-button">
+                                    <form method="post" action="@Url.Action("Delete", new { dutyId = duty.DutyId })"
+                                        class="delete-form">
+                                        @Html.AntiForgeryToken()
+                                        <button type="button"
+                                            class="delete-button bg-darkAccent-500 hover:bg-darkAccent-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-darkAccent-500">
                                             <i class="fa fa-trash fa-md mr-1" aria-hidden="true"></i>
                                             <span>Delete</span>
                                         </button>
                                     </form>
+
                                 </div>
                             </td>
                         </tr>
@@ -64,8 +73,8 @@
 </div>
 
 <!-- Modal for Edit Duty -->
-<div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg w-96 md:w-128">
+<div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center bg-darkContent-900 bg-opacity-50 hidden">
+    <div class="bg-white dark:bg-darkContent-900 p-6 rounded-lg w-96 md:w-128">
         <div class="flex justify-between items-center mb-4">
             <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Edit User Role</h5>
             <button type="button" class="text-gray-500 dark:text-gray-400" onclick="closeModal()">
@@ -78,17 +87,27 @@
                 <input type="hidden" id="Progress" name="Progress" />
                 <input type="hidden" id="CreatedDate" name="CreatedDate" />
                 <div>
-                    <label for="Title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Title</label>
-                    <input id="Title" type="text" class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500" required="">
+                    <label for="Title"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Title</label>
+                    <input id="Title" type="text"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                        required="">
                 </div>
                 <div>
-                    <label for="Description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Description</label>
-                    <textarea id="Description" type="text" class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500" required="" style="resize: none;"></textarea>
+                    <label for="Description"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Description</label>
+                    <textarea id="Description" type="text"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus-visible:outline-darkAccent-600 focus-visible:border-darkAccent-600 block w-full p-2.5 dark:bg-darkContent-700 dark:border-darkContent-600 dark:placeholder-darkContent-400 dark:text-darkText dark:focus:ring-darkAccent-500 dark:focus:border-darkAccent-500"
+                        required="" style="resize: none;"></textarea>
                 </div>
             </div>
             <div class="mt-6 flex justify-end space-x-2">
-                <button type="button" class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600" onclick="closeModal()">Close</button>
-                <button type="submit" class="px-4 py-2 text-sm text-white bg-darkAccent-500 rounded-md hover:bg-darkAccent-700">Save changes</button>
+                <button type="button"
+                    class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+                    onclick="closeModal()">Close</button>
+                <button type="submit"
+                    class="px-4 py-2 text-sm text-white bg-darkAccent-500 rounded-md hover:bg-darkAccent-700">Save
+                    changes</button>
             </div>
         </form>
     </div>
@@ -120,21 +139,26 @@
     <!-- JavaScript for Delete Operation -->
     <script>
         document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Formun varsayılan submit işlemini engelle
+                const form = button.closest('form'); // İlgili formu al
+
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
+                    title: "<strong>Are you sure?</strong>",
+                    html: "This action <b>cannot</b> be undone!",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#A6A8AC',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#A6A8AC",
+                    confirmButtonText: "<i class='fa fa-check'></i> Yes, delete it!",
+                    cancelButtonText: "<i class='fa fa-times'></i> Cancel",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        this.closest('form').submit();
+                        form.submit(); // Eğer kullanıcı onay verirse formu gönder
                     }
                 });
             });
         });
     </script>
+
 </div>

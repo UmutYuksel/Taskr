@@ -17,7 +17,7 @@
             @if (TempData["Error Message"] != null)
             {
                 <div class="text-red-500">
-                    @TempData["Error Message"], @TempData["SuccessMessage"]
+                    @TempData["Error Message"]
                 </div>
             }
         </div>
@@ -67,7 +67,7 @@
 
 <!-- Duty Modal -->
 <div id="viewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg w-[400px] sm:w-[600px] md:w-[800px] lg:w-[1200px]">
+    <div class="bg-white dark:bg-darkContent-800 p-8 rounded-lg w-[400px] sm:w-[600px] md:w-[800px] lg:w-[1200px]">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Task Information</h2>
             <button type="button" class="text-gray-500 dark:text-gray-400" onclick="closeModal()">

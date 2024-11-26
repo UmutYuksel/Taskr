@@ -115,7 +115,6 @@ namespace GorevYonetimSistemi.Web.Controllers
             return View(dutyDto);
         }
 
-        // Görev silme
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid dutyId)
@@ -127,8 +126,9 @@ namespace GorevYonetimSistemi.Web.Controllers
                 TempData["SuccessMessage"] = "Task deleted successfully.";
                 return RedirectToAction(nameof(Index));
             }
-            TempData["Error Message"] = "Task could not be deleted."; ;
-            return View();
+
+            TempData["Error Message"] = "Task could not be deleted.";
+            return RedirectToAction(nameof(Index));
         }
     }
 }
